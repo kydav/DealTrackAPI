@@ -25,9 +25,9 @@ namespace DealTrackAPI.Services
             _userRepository.DeleteUser(userId);
         }
 
-        public Task<User> GetUser(int userId)
+        public async Task<User> GetUser(int userId)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetUser(userId);
         }
 
         public Task<IEnumerable<User>> GetUsers()
