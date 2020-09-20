@@ -15,7 +15,7 @@ namespace DealTrackAPI.Services
             _userRepository = userRepository;
         }
 
-        public void CreateUser(User user)
+        public void CreateUser(UserDTO user)
         {
             _userRepository.CreateUser(user);
         }
@@ -25,17 +25,17 @@ namespace DealTrackAPI.Services
             _userRepository.DeleteUser(userId);
         }
 
-        public async Task<User> GetUser(int userId)
+        public async Task<UserDTO> GetUser(int userId)
         {
             return _userRepository.GetUser(userId);
         }
 
-        public Task<IEnumerable<User>> GetUsers()
+        public Task<IEnumerable<UserDTO>> GetUsers()
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserDTO user)
         {
             throw new NotImplementedException();
         }

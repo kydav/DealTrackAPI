@@ -35,14 +35,14 @@ namespace DealTrackAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUser(User user)
+        public IActionResult CreateUser(UserDTO user)
         {
             _userService.CreateUser(user);
             return NoContent();
         }
 
         [HttpPut]
-        public IActionResult UpdateUser(User user)
+        public IActionResult UpdateUser(UserDTO user)
         {
             _userService.UpdateUser(user);
             return NoContent();

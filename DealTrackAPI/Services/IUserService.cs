@@ -7,10 +7,10 @@ namespace DealTrackAPI.Services
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetUsers();
-        Task<User> GetUser(int userId);
-        void CreateUser(User user);
+        Task<IEnumerable<UserDTO>> GetUsers();
+        Task<UserDTO> GetUser(int userId);
+        void CreateUser(UserDTO user);
         void DeleteUser(int userId);
-        void UpdateUser(User user);
+        void UpdateUser(UserDTO user);
     }
 }

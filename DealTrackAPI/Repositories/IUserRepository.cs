@@ -6,10 +6,10 @@ namespace DealTrackAPI.Repositories
 {
     public interface IUserRepository
     {
-        IEnumerable<User> GetUsers();
-        User GetUser(int userId);
-        void CreateUser(User user);
-        void UpdateUser(User user);
+        IEnumerable<UserDTO> GetUsers();
+        UserDTO GetUser(int userId);
+        void CreateUser(UserDTO user);
+        void UpdateUser(UserDTO user);
         void DeleteUser(int userId);
     }
 }

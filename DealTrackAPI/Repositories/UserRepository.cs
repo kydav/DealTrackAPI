@@ -10,7 +10,7 @@ namespace DealTrackAPI.Repositories
         {
         }
 
-        public void CreateUser(User user)
+        public void CreateUser(UserDTO user)
         {
             throw new NotImplementedException();
         }
@@ -20,17 +20,17 @@ namespace DealTrackAPI.Repositories
             throw new NotImplementedException();
         }
 
-        public User GetUser(int userId)
+        public UserDTO GetUser(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<UserDTO> GetUsers()
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserDTO user)
         {
             throw new NotImplementedException();
         }
