@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace DealTrackAPI.Models
 {
     public class DealDTO
@@ -11,6 +13,8 @@ namespace DealTrackAPI.Models
         public UserDTO Creator { get; set; }
         public UserDTO Assignee { get; set; }
         public DateTime CreatedDate { get; set; }
+        public List<CustomerDTO> Customers { get; set; }
+        public List<CommentDTO> Comments { get; set; }
 
     }
 }
