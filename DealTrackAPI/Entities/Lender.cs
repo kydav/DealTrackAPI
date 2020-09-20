@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DealTrackAPI.Entities
 {
-    public class Customer
+    public class Lender
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,11 +12,11 @@ namespace DealTrackAPI.Entities
 
         [Required]
         [MaxLength(50)]
-        public string FirstName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string LastName { get; set; }
+        public string BusinessName { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -50,7 +49,5 @@ namespace DealTrackAPI.Entities
         [Required]
         [MaxLength(50)]
         public string MobileNumber { get; set; }
-
-        public List<CustomerToDeal> CustomersToDeals { get; set; }
     }
 }
