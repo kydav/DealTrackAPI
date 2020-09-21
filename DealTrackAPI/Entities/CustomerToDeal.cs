@@ -1,7 +1,7 @@
 ﻿using System;
 namespace DealTrackAPI.Entities
 {
-    public class CustomerToDeal
+    public class CustomerDeal
     {
         public int CustomerId { get; set; }
 
@@ -10,5 +10,9 @@ namespace DealTrackAPI.Entities
         public int DealId { get; set; }
 
         public Deal Deal { get; set; }
+
+        public bool IsOurcustomer { get; set; }
+
+        public int CustomerType { get; set; }
     }
 }

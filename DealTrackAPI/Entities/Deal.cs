@@ -18,7 +18,7 @@ namespace DealTrackAPI.Entities
         public ICollection<User> Creator { get; set; }
         public ICollection<User> Assignee { get; set; }
         public DateTime CreatedDate { get; set; }
-        public IList<CustomerToDeal> Customers { get; set; }
+        public IList<CustomerDeal> Customers { get; set; }
         public ICollection<Comment> Comments { get; set; }
     }
 }
