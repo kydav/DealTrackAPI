@@ -11,6 +11,7 @@ namespace DealTrackAPI.Models
         public DealTrackDBContext(DbContextOptions<DealTrackDBContext> options) : base(options)
         {
             Database.EnsureCreated();
+            migrationBuilder.Sql()
         }
         //https://www.entityframeworktutorial.net/efcore/create-model-for-existing-database-in-ef-core.aspx
 
