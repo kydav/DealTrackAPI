@@ -19,38 +19,31 @@ namespace DealTrackAPI.Entities
         [MaxLength(50)]
         public string LastName { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string EmailAddress { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string AddressOne { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string AddressTwo { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string City { get; set; }
 
-        [Required]
         [MaxLength(2)]
         public string State { get; set; }
 
-        [Required]
         [MaxLength(5)]
         public string ZipCode { get; set; }
 
-        [Required]
+        
         [MaxLength(50)]
         public string OfficeNumber { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string MobileNumber { get; set; }
 
-        public IList<CustomerDeal> CustomersToDeals { get; set; }
+        public IList<CustomerDeal> CustomersDeals { get; set; }
     }
 }
