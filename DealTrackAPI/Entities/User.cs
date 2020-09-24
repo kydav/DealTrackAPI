@@ -22,17 +22,14 @@ namespace DealTrackAPI.Entities
         [MaxLength(50)]
         public string UserName { get; set; }
 
-        [Required]
         public byte[] PasswordHash { get; set; }
 
-        [Required]
         public Guid UserGuid { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string EmailAddress { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string MobileNumber { get; set; }
 

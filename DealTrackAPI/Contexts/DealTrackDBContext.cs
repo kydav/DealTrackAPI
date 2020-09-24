@@ -11,7 +11,7 @@ namespace DealTrackAPI.Models
         public DealTrackDBContext(DbContextOptions<DealTrackDBContext> options) : base(options)
         {
             Database.EnsureCreated();
-            migrationBuilder.Sql()
+            //migrationBuilder.Sql()
         }
         //https://www.entityframeworktutorial.net/efcore/create-model-for-existing-database-in-ef-core.aspx
 
@@ -350,7 +350,7 @@ namespace DealTrackAPI.Models
                     new CustomerDeal()
                     {
                         Id = 4,
-                        CustomerId = 4,
+                        CustomerId = 8,
                         DealId = 2,
                         IsOurcustomer = false,
                         CustomerType = 0
@@ -452,7 +452,7 @@ namespace DealTrackAPI.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
     }

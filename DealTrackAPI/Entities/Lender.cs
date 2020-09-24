@@ -26,7 +26,6 @@ namespace DealTrackAPI.Entities
         [MaxLength(50)]
         public string AddressOne { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string AddressTwo { get; set; }
 
