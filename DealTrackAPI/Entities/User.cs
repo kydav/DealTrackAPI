@@ -33,8 +33,12 @@ namespace DealTrackAPI.Entities
         [MaxLength(50)]
         public string MobileNumber { get; set; }
 
-        public Deal CreatedDeal { get; set; }
+        //public Deal Deal { get; set; }
 
-        public Deal AssignedDeal { get; set; }
+        public virtual Deal CreatedDeal { get; set; }
+
+        public virtual Deal AssignedDeal { get; set; }
+
+        public Comment CreatedComment { get; set; }
     }
 }

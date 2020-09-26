@@ -18,8 +18,9 @@ namespace DealTrackAPI.Entities
         //public int PropertyId { get; set; }
 
         //public ICollection<Property> Property { get; set; }
+        //[ForeignKey("Property")]
         public int PropertyId { get; set; }
-        public Property Property { get; set; }
+        public Property DealProperty { get; set; }
 
         [MaxLength(255)]
         public string Description { get; set; }
@@ -35,14 +36,17 @@ namespace DealTrackAPI.Entities
         //public int AssigneeId { get; set; }
         //public ICollection<User> Assignee { get; set; }
 
+        //[ForeignKey("Lender")]
         public int LenderID { get; set; }
-        public Lender Lender { get; set; }
+        public Lender DealLender { get; set; }
 
+        [ForeignKey("DealCreator")]
         public int CreatorId { get; set; }
-        public User Creator { get; set; }
+        public virtual User DealCreator { get; set; }
 
+        [ForeignKey("DealAssignee")]
         public int AssigneeId { get; set; }
-        public User Assignee { get; set; }
+        public virtual User DealAssignee { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

@@ -16,6 +16,7 @@ namespace DealTrackAPI.Entities
 
         [Required]
         public int CreatorId { get; set; }
+        public User Creator { get; set;  }
 
         public DateTime CreatedDate { get; set; }
 

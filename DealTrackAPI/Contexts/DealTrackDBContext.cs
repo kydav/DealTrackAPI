@@ -22,29 +22,44 @@ namespace DealTrackAPI.Models
                 .HasKey(x => new { x.CustomerId, x.DealId });
 
             modelBuilder.Entity<Deal>()
-                .HasOne<Lender>(s => s.Lender)
-                .WithOne(ad => ad.Deal)
-                .HasForeignKey<Lender>(ad => ad.Id);
+                .HasOne(d => d.DealLender)
+                .WithOne()
+                .HasForeignKey<Lender>(l => l.Id);
 
             modelBuilder.Entity<Deal>()
-                .HasOne<Property>(s => s.Property)
-                .WithOne(ad => ad.Deal)
-                .HasForeignKey<Deal>(ad => ad.Id);
+                .HasOne(s => s.DealProperty)
+                .WithOne()
+                .HasForeignKey<Property>(ad => ad.Id);
 
             modelBuilder.Entity<Deal>()
-                .HasOne<User>(s => s.Assignee)
-                .WithOne(ad => ad.AssignedDeal)
-                .HasForeignKey<Deal>(s => s.Id);
+                .HasOne(s => s.DealAssignee)
+                .WithOne(s => s.AssignedDeal)
+                .HasForeignKey<User>(s => s.Id);
 
             modelBuilder.Entity<Deal>()
-                .HasOne<User>(s => s.Creator)
-                .WithOne(ad => ad.CreatedDeal)
-                .HasForeignKey<Deal>(s => s.Id);
+                .HasOne(s => s.DealCreator)
+                .WithOne(s => s.CreatedDeal)
+                .HasForeignKey<User>(s => s.Id);
 
-            modelBuilder.Entity<Deal>()
-                .HasMany<Comment>(g => g.Comments)
-                .WithOne(s => s.Deal)
-                .HasForeignKey(s => s.DealId);
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Deal)
+                .WithOne()
+                .HasForeignKey<Deal>(c => c.Id);
+
+            //modelBuilder.Entity<User>()
+            //    .HasOne(p => p.CreatedDeal)
+            //    .WithOne()
+            //    .HasForeignKey<Deal>(p => p.CreatorId);
+
+            //modelBuilder.Entity<User>()
+            //    .HasOne(p => p.AssignedDeal)
+            //    .WithOne()
+            //    .HasForeignKey<Deal>(p => p.AssigneeId);
+
+            //modelBuilder.Entity<Deal>()
+            //    .HasMany<Comment>(g => g.Comments)
+            //    .WithOne(s => s.Deal)
+            //    .HasForeignKey(s => s.DealId);
 
             modelBuilder.Entity<User>()
                 .HasData(
@@ -279,7 +294,7 @@ namespace DealTrackAPI.Models
                         PropertyId = 1,
                         CreatedDate = new DateTime(2020, 7, 15),
                         CreatorId = 1,
-                        AssigneeId = 1,
+                        AssigneeId = 2,
                         InspectionDate = new DateTime(2020, 11, 13),
                         AppraisalDate = new DateTime(2020, 11, 15),
                         ClosingDate = new DateTime(2020, 11, 30)
