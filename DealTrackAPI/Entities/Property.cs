@@ -29,7 +29,7 @@ namespace DealTrackAPI.Entities
         [MaxLength(2)]
         public string State { get; set; }
 
-        public Deal Deal { get; set; }
+        //public Deal Deal { get; set; }
 
     }
 }

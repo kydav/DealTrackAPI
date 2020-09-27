@@ -10,13 +10,13 @@ namespace DealTrackAPI.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        
         public int DealId { get; set; }
-        public Deal Deal { get; set; }
+        public virtual Deal Deal { get; set; }
 
-        [Required]
+        
         public int CreatorId { get; set; }
-        public User Creator { get; set;  }
+        public virtual User Creator { get; set;  }
 
         public DateTime CreatedDate { get; set; }
 

@@ -35,10 +35,10 @@ namespace DealTrackAPI.Entities
 
         //public Deal Deal { get; set; }
 
-        public virtual Deal CreatedDeal { get; set; }
+        //public virtual Deal CreatedDeal { get; set; }
 
-        public virtual Deal AssignedDeal { get; set; }
+        //public virtual Deal AssignedDeal { get; set; }
 
-        public Comment CreatedComment { get; set; }
+        //public Comment CreatedComment { get; set; }
     }
 }

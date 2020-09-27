@@ -21,30 +21,47 @@ namespace DealTrackAPI.Models
             modelBuilder.Entity<CustomerDeal>()
                 .HasKey(x => new { x.CustomerId, x.DealId });
 
+            //modelBuilder.Entity<CustomerDeal>()
+            //    .HasOne(d => d.Deal)
+            //    .WithMany(d => d.CustomerDeals)
+            //    .HasForeignKey(x => x.DealId);
+
+            //modelBuilder.Entity<CustomerDeal>()
+            //    .HasOne(d => d.Customer)
+            //    .WithMany(d => d.CustomersDeals)
+            //    .HasForeignKey(f => f.CustomerId);
+
             modelBuilder.Entity<Deal>()
                 .HasOne(d => d.DealLender)
-                .WithOne()
-                .HasForeignKey<Lender>(l => l.Id);
+                .WithMany()
+                .HasPrincipalKey(l => l.Id);
 
             modelBuilder.Entity<Deal>()
                 .HasOne(s => s.DealProperty)
                 .WithOne()
-                .HasForeignKey<Property>(ad => ad.Id);
+                .HasPrincipalKey<Property>(ad => ad.Id);
 
             modelBuilder.Entity<Deal>()
                 .HasOne(s => s.DealAssignee)
-                .WithOne(s => s.AssignedDeal)
-                .HasForeignKey<User>(s => s.Id);
+                .WithMany()
+                //.WithOne(s => s.AssignedDeal)
+                .HasPrincipalKey(s => s.Id);
 
             modelBuilder.Entity<Deal>()
                 .HasOne(s => s.DealCreator)
-                .WithOne(s => s.CreatedDeal)
-                .HasForeignKey<User>(s => s.Id);
+                //.WithOne(s => s.CreatedDeal)
+                .WithMany()
+                .HasPrincipalKey(s => s.Id);
 
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Deal)
-                .WithOne()
-                .HasForeignKey<Deal>(c => c.Id);
+                .WithMany(c => c.Comments)
+                .HasPrincipalKey(c => c.Id);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Creator)
+                .WithMany()
+                .HasPrincipalKey(u => u.Id);
 
             //modelBuilder.Entity<User>()
             //    .HasOne(p => p.CreatedDeal)
@@ -292,6 +309,7 @@ namespace DealTrackAPI.Models
                         Id = 1,
                         Status = 3,
                         PropertyId = 1,
+                        LenderID = 1,
                         CreatedDate = new DateTime(2020, 7, 15),
                         CreatorId = 1,
                         AssigneeId = 2,
@@ -304,6 +322,7 @@ namespace DealTrackAPI.Models
                         Id = 2,
                         Status = 3,
                         PropertyId = 2,
+                        LenderID = 2,
                         CreatedDate = new DateTime(2020, 7, 16),
                         CreatorId = 2,
                         AssigneeId = 3,
@@ -316,6 +335,7 @@ namespace DealTrackAPI.Models
                         Id = 3,
                         Status = 3,
                         PropertyId = 3,
+                        LenderID = 2,
                         CreatedDate = new DateTime(2020, 7, 18),
                         CreatorId = 4,
                         AssigneeId = 3,
@@ -328,6 +348,7 @@ namespace DealTrackAPI.Models
                         Id = 4,
                         Status = 3,
                         PropertyId = 4,
+                        LenderID = 1,
                         CreatedDate = new DateTime(2020, 7, 19),
                         CreatorId = 4,
                         AssigneeId = 1,
@@ -335,7 +356,7 @@ namespace DealTrackAPI.Models
                         AppraisalDate = new DateTime(2020, 11, 11),
                         ClosingDate = new DateTime(2020, 11, 18)
                     }
-                );
+                ) ;
             modelBuilder.Entity<CustomerDeal>()
                 .HasData(
                     new CustomerDeal()
@@ -464,6 +485,7 @@ namespace DealTrackAPI.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Lender> Lenders { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Property> Properties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -49,6 +49,6 @@ namespace DealTrackAPI.Entities
         [MaxLength(50)]
         public string MobileNumber { get; set; }
 
-        public Deal Deal { get; set; }
+        //public Deal Deal { get; set; }
     }
 }

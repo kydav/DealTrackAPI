@@ -38,13 +38,13 @@ namespace DealTrackAPI.Entities
 
         //[ForeignKey("Lender")]
         public int LenderID { get; set; }
-        public Lender DealLender { get; set; }
+        public virtual Lender DealLender { get; set; }
 
-        [ForeignKey("DealCreator")]
+        //[ForeignKey("DealCreator")]
         public int CreatorId { get; set; }
         public virtual User DealCreator { get; set; }
 
-        [ForeignKey("DealAssignee")]
+        //[ForeignKey("DealAssignee")]
         public int AssigneeId { get; set; }
         public virtual User DealAssignee { get; set; }
 
@@ -54,10 +54,10 @@ namespace DealTrackAPI.Entities
 
         public DateTime InspectionDate { get; set; }
 
-        public IList<CustomerDeal> CustomerDeals { get; set; }
+        public virtual IList<CustomerDeal> CustomerDeals { get; set; }
 
         public DateTime ClosingDate { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
