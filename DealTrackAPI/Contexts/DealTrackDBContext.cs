@@ -302,6 +302,63 @@ namespace DealTrackAPI.Models
                         ZipCode = "84720"
                     }
                 );
+
+            modelBuilder.Entity<Appraiser>()
+                .HasData(
+                    new Appraiser()
+                    {
+                        Id = 1,
+                        Name = "Karl Hugh",
+                        BusinessName = "CityWide Home Loans",
+                        EmailAddress = "karl@karlhugh.com",
+                        AddressOne = "98 W. Center St.",
+                        City = "Cedar City",
+                        ZipCode = "84720",
+                        State = "UT",
+                        MobileNumber = "435-590-1183",
+                        OfficeNumber = "435-590-1183"
+                    },
+                    new Appraiser()
+                    {
+                        Id = 2,
+                        Name = "Karl Hugh",
+                        BusinessName = "CityWide Home Loans",
+                        EmailAddress = "karl@karlhugh.com",
+                        AddressOne = "98 W. Center St.",
+                        City = "Cedar City",
+                        ZipCode = "84720",
+                        State = "UT",
+                        MobileNumber = "435-590-1183",
+                        OfficeNumber = "435-590-1183"
+                    }
+                );
+            modelBuilder.Entity<TitleCompany>()
+                .HasData(
+                    new TitleCompany()
+                    {
+                        Id = 1,
+                        Name = "Southern Utah Title Company",
+                        EmailAddress = "karl@karlhugh.com",
+                        AddressOne = "98 W. Center St.",
+                        City = "Cedar City",
+                        ZipCode = "84720",
+                        State = "UT",
+                        FaxNumber = "435-590-1183",
+                        OfficeNumber = "435-590-1183"
+                    },
+                    new TitleCompany()
+                    {
+                        Id = 2,
+                        Name = "Karl Hugh",
+                        EmailAddress = "karl@karlhugh.com",
+                        AddressOne = "98 W. Center St.",
+                        City = "Cedar City",
+                        ZipCode = "84720",
+                        State = "UT",
+                        FaxNumber = "435-590-1183",
+                        OfficeNumber = "435-590-1183"
+                    }
+                );
             modelBuilder.Entity<Deal>()
                 .HasData(
                     new Deal()

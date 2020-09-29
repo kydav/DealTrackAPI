@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DealTrackAPI.Entities
 {
-    public class Lender
+    public class TitleCompany
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,11 +14,6 @@ namespace DealTrackAPI.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string BusinessName { get; set; }
-
-        [Required]
         [MaxLength(50)]
         public string EmailAddress { get; set; }
 
@@ -45,11 +40,6 @@ namespace DealTrackAPI.Entities
         [MaxLength(50)]
         public string OfficeNumber { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string MobileNumber { get; set; }
-
-        [Required]
         [MaxLength(50)]
         public string FaxNumber { get; set; }
 

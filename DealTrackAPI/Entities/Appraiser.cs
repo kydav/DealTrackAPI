@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DealTrackAPI.Entities
 {
-    public class Lender
+    public class Appraiser
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -48,10 +48,6 @@ namespace DealTrackAPI.Entities
         [Required]
         [MaxLength(50)]
         public string MobileNumber { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string FaxNumber { get; set; }
 
         //public Deal Deal { get; set; }
     }
