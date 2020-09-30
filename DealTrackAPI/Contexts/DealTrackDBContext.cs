@@ -30,6 +30,9 @@ namespace DealTrackAPI.Models
             //    .HasOne(d => d.Customer)
             //    .WithMany(d => d.CustomersDeals)
             //    .HasForeignKey(f => f.CustomerId);
+            modelBuilder.Entity<Deal>()
+                .Property(p => p.EarnestMoney)
+                .HasColumnType("decimal(7,2)");
 
             modelBuilder.Entity<Deal>()
                 .HasOne(d => d.DealLender)
@@ -40,6 +43,16 @@ namespace DealTrackAPI.Models
                 .HasOne(s => s.DealProperty)
                 .WithOne()
                 .HasPrincipalKey<Property>(ad => ad.Id);
+
+            modelBuilder.Entity<Deal>()
+                .HasOne(s => s.DealAppraiser)
+                .WithOne()
+                .HasPrincipalKey<Appraiser>(ad => ad.Id);
+
+            modelBuilder.Entity<Deal>()
+                .HasOne(s => s.DealTitleCompany)
+                .WithOne()
+                .HasPrincipalKey<TitleCompany>(ad => ad.Id);
 
             modelBuilder.Entity<Deal>()
                 .HasOne(s => s.DealAssignee)
@@ -308,28 +321,27 @@ namespace DealTrackAPI.Models
                     new Appraiser()
                     {
                         Id = 1,
-                        Name = "Karl Hugh",
-                        BusinessName = "CityWide Home Loans",
-                        EmailAddress = "karl@karlhugh.com",
-                        AddressOne = "98 W. Center St.",
+                        Name = "Karsten Reed",
+                        BusinessName = "Utah South Appraisal",
+                        EmailAddress = "kreed@utahsouthappraisal.com",
+                        AddressOne = "107 N. 200 W.",
                         City = "Cedar City",
                         ZipCode = "84720",
                         State = "UT",
-                        MobileNumber = "435-590-1183",
-                        OfficeNumber = "435-590-1183"
+                        MobileNumber = "435-531-9683",
+                        OfficeNumber = "435-865-1921"
                     },
                     new Appraiser()
                     {
                         Id = 2,
-                        Name = "Karl Hugh",
-                        BusinessName = "CityWide Home Loans",
-                        EmailAddress = "karl@karlhugh.com",
-                        AddressOne = "98 W. Center St.",
+                        BusinessName = "Hymas & Associates",
+                        EmailAddress = "cody@hymasappraisal.com",
+                        AddressOne = "337 S. Main St.",
+                        AddressTwo = "Ste 122",
                         City = "Cedar City",
                         ZipCode = "84720",
                         State = "UT",
-                        MobileNumber = "435-590-1183",
-                        OfficeNumber = "435-590-1183"
+                        OfficeNumber = "435-313-1444"
                     }
                 );
             modelBuilder.Entity<TitleCompany>()
@@ -338,25 +350,23 @@ namespace DealTrackAPI.Models
                     {
                         Id = 1,
                         Name = "Southern Utah Title Company",
-                        EmailAddress = "karl@karlhugh.com",
-                        AddressOne = "98 W. Center St.",
+                        AddressOne = "210 North 300 West",
+                        AddressTwo = "Ste 100",
                         City = "Cedar City",
                         ZipCode = "84720",
                         State = "UT",
-                        FaxNumber = "435-590-1183",
-                        OfficeNumber = "435-590-1183"
+                        FaxNumber = "435-586-5141",
+                        OfficeNumber = "435-586-9414"
                     },
                     new TitleCompany()
                     {
                         Id = 2,
-                        Name = "Karl Hugh",
-                        EmailAddress = "karl@karlhugh.com",
-                        AddressOne = "98 W. Center St.",
+                        Name = "First American Title Company",
+                        AddressOne = "365 S Main St",
                         City = "Cedar City",
                         ZipCode = "84720",
                         State = "UT",
-                        FaxNumber = "435-590-1183",
-                        OfficeNumber = "435-590-1183"
+                        OfficeNumber = "435-586-4476"
                     }
                 );
             modelBuilder.Entity<Deal>()
@@ -367,10 +377,14 @@ namespace DealTrackAPI.Models
                         Status = 3,
                         PropertyId = 1,
                         LenderID = 1,
+                        AppraiserId = 1,
+                        TitleCompanyId = 2,
                         CreatedDate = new DateTime(2020, 7, 15),
                         CreatorId = 1,
                         AssigneeId = 2,
+                        EarnestMoney = 1300,
                         InspectionDate = new DateTime(2020, 11, 13),
+                        DisclosureDeadline = new DateTime(2020, 11, 14),
                         AppraisalDate = new DateTime(2020, 11, 15),
                         ClosingDate = new DateTime(2020, 11, 30)
                     },
@@ -380,9 +394,12 @@ namespace DealTrackAPI.Models
                         Status = 3,
                         PropertyId = 2,
                         LenderID = 2,
+                        AppraiserId = 2,
+                        TitleCompanyId = 2,
                         CreatedDate = new DateTime(2020, 7, 16),
                         CreatorId = 2,
                         AssigneeId = 3,
+                        EarnestMoney = 5000,
                         InspectionDate = new DateTime(2020, 11, 14),
                         AppraisalDate = new DateTime(2020, 11, 16),
                         ClosingDate = new DateTime(2020, 11, 24)
@@ -393,9 +410,12 @@ namespace DealTrackAPI.Models
                         Status = 3,
                         PropertyId = 3,
                         LenderID = 2,
+                        AppraiserId = 2,
+                        TitleCompanyId = 1,
                         CreatedDate = new DateTime(2020, 7, 18),
                         CreatorId = 4,
                         AssigneeId = 3,
+                        EarnestMoney = 2000,
                         InspectionDate = new DateTime(2020, 11, 10),
                         AppraisalDate = new DateTime(2020, 11, 10),
                         ClosingDate = new DateTime(2020, 11, 26)
@@ -406,9 +426,12 @@ namespace DealTrackAPI.Models
                         Status = 3,
                         PropertyId = 4,
                         LenderID = 1,
+                        AppraiserId = 1,
+                        TitleCompanyId = 1,
                         CreatedDate = new DateTime(2020, 7, 19),
                         CreatorId = 4,
                         AssigneeId = 1,
+                        EarnestMoney = 500,
                         InspectionDate = new DateTime(2020, 11, 8),
                         AppraisalDate = new DateTime(2020, 11, 11),
                         ClosingDate = new DateTime(2020, 11, 18)

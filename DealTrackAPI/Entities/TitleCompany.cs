@@ -36,7 +36,6 @@ namespace DealTrackAPI.Entities
         [MaxLength(5)]
         public string ZipCode { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string OfficeNumber { get; set; }
 
