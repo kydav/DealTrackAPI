@@ -46,13 +46,13 @@ namespace DealTrackAPI.Models
 
             modelBuilder.Entity<Deal>()
                 .HasOne(s => s.DealAppraiser)
-                .WithOne()
-                .HasPrincipalKey<Appraiser>(ad => ad.Id);
+                .WithMany()
+                .HasPrincipalKey(ad => ad.Id);
 
             modelBuilder.Entity<Deal>()
                 .HasOne(s => s.DealTitleCompany)
-                .WithOne()
-                .HasPrincipalKey<TitleCompany>(ad => ad.Id);
+                .WithMany()
+                .HasPrincipalKey(ad => ad.Id);
 
             modelBuilder.Entity<Deal>()
                 .HasOne(s => s.DealAssignee)
