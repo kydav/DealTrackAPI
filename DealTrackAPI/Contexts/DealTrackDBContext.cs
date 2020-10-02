@@ -561,7 +561,7 @@ namespace DealTrackAPI.Models
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Deal> Deals { get; set; }
-        public DbSet<CustomerDeal> CustomersToDeals { get; set; }
+        public DbSet<CustomerDeal> CustomerDeals { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Lender> Lenders { get; set; }
         public DbSet<User> Users { get; set; }

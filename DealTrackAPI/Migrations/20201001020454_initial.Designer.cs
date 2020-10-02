@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DealTrackAPI.Migrations
 {
     [DbContext(typeof(DealTrackDBContext))]
-    [Migration("20200927051013_new2")]
-    partial class new2
+    [Migration("20201001020454_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,89 @@ namespace DealTrackAPI.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DealTrackAPI.Entities.Appraiser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("AddressTwo")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("BusinessName")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("OfficeNumber")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(2)")
+                        .HasMaxLength(2);
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appraiser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressOne = "107 N. 200 W.",
+                            BusinessName = "Utah South Appraisal",
+                            City = "Cedar City",
+                            EmailAddress = "kreed@utahsouthappraisal.com",
+                            MobileNumber = "435-531-9683",
+                            Name = "Karsten Reed",
+                            OfficeNumber = "435-865-1921",
+                            State = "UT",
+                            ZipCode = "84720"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressOne = "337 S. Main St.",
+                            AddressTwo = "Ste 122",
+                            BusinessName = "Hymas & Associates",
+                            City = "Cedar City",
+                            EmailAddress = "cody@hymasappraisal.com",
+                            OfficeNumber = "435-313-1444",
+                            State = "UT",
+                            ZipCode = "84720"
+                        });
+                });
 
             modelBuilder.Entity("DealTrackAPI.Entities.Comment", b =>
                 {
@@ -283,7 +366,7 @@ namespace DealTrackAPI.Migrations
 
                     b.HasIndex("DealId");
 
-                    b.ToTable("CustomersToDeals");
+                    b.ToTable("CustomerDeals");
 
                     b.HasData(
                         new
@@ -378,6 +461,9 @@ namespace DealTrackAPI.Migrations
                     b.Property<DateTime>("AppraisalDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("AppraiserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("AssigneeId")
                         .HasColumnType("int");
 
@@ -400,6 +486,12 @@ namespace DealTrackAPI.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<DateTime>("DisclosureDeadline")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("EarnestMoney")
+                        .HasColumnType("decimal(7,2)");
+
                     b.Property<DateTime>("InspectionDate")
                         .HasColumnType("datetime2");
 
@@ -412,7 +504,12 @@ namespace DealTrackAPI.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<int>("TitleCompanyId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AppraiserId");
 
                     b.HasIndex("DealAssigneeId");
 
@@ -423,6 +520,8 @@ namespace DealTrackAPI.Migrations
                     b.HasIndex("PropertyId")
                         .IsUnique();
 
+                    b.HasIndex("TitleCompanyId");
+
                     b.ToTable("Deals");
 
                     b.HasData(
@@ -430,53 +529,69 @@ namespace DealTrackAPI.Migrations
                         {
                             Id = 1,
                             AppraisalDate = new DateTime(2020, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AppraiserId = 1,
                             AssigneeId = 2,
                             ClosingDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedDate = new DateTime(2020, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatorId = 1,
+                            DisclosureDeadline = new DateTime(2020, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EarnestMoney = 1300m,
                             InspectionDate = new DateTime(2020, 11, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LenderID = 1,
                             PropertyId = 1,
-                            Status = 3
+                            Status = 3,
+                            TitleCompanyId = 2
                         },
                         new
                         {
                             Id = 2,
                             AppraisalDate = new DateTime(2020, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AppraiserId = 2,
                             AssigneeId = 3,
                             ClosingDate = new DateTime(2020, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedDate = new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatorId = 2,
+                            DisclosureDeadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EarnestMoney = 5000m,
                             InspectionDate = new DateTime(2020, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LenderID = 2,
                             PropertyId = 2,
-                            Status = 3
+                            Status = 3,
+                            TitleCompanyId = 2
                         },
                         new
                         {
                             Id = 3,
                             AppraisalDate = new DateTime(2020, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AppraiserId = 2,
                             AssigneeId = 3,
                             ClosingDate = new DateTime(2020, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedDate = new DateTime(2020, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatorId = 4,
+                            DisclosureDeadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EarnestMoney = 2000m,
                             InspectionDate = new DateTime(2020, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LenderID = 2,
                             PropertyId = 3,
-                            Status = 3
+                            Status = 3,
+                            TitleCompanyId = 1
                         },
                         new
                         {
                             Id = 4,
                             AppraisalDate = new DateTime(2020, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AppraiserId = 1,
                             AssigneeId = 1,
                             ClosingDate = new DateTime(2020, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedDate = new DateTime(2020, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatorId = 4,
+                            DisclosureDeadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EarnestMoney = 500m,
                             InspectionDate = new DateTime(2020, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LenderID = 1,
                             PropertyId = 4,
-                            Status = 3
+                            Status = 3,
+                            TitleCompanyId = 1
                         });
                 });
 
@@ -511,8 +626,11 @@ namespace DealTrackAPI.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<string>("FaxNumber")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
                     b.Property<string>("MobileNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -522,7 +640,6 @@ namespace DealTrackAPI.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("OfficeNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -640,6 +757,83 @@ namespace DealTrackAPI.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DealTrackAPI.Entities.TitleCompany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("AddressTwo")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FaxNumber")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("OfficeNumber")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(2)")
+                        .HasMaxLength(2);
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TitleCompany");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressOne = "210 North 300 West",
+                            AddressTwo = "Ste 100",
+                            City = "Cedar City",
+                            FaxNumber = "435-586-5141",
+                            Name = "Southern Utah Title Company",
+                            OfficeNumber = "435-586-9414",
+                            State = "UT",
+                            ZipCode = "84720"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressOne = "365 S Main St",
+                            City = "Cedar City",
+                            Name = "First American Title Company",
+                            OfficeNumber = "435-586-4476",
+                            State = "UT",
+                            ZipCode = "84720"
+                        });
+                });
+
             modelBuilder.Entity("DealTrackAPI.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -752,6 +946,12 @@ namespace DealTrackAPI.Migrations
 
             modelBuilder.Entity("DealTrackAPI.Entities.Deal", b =>
                 {
+                    b.HasOne("DealTrackAPI.Entities.Appraiser", "DealAppraiser")
+                        .WithMany()
+                        .HasForeignKey("AppraiserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DealTrackAPI.Entities.User", "DealAssignee")
                         .WithMany()
                         .HasForeignKey("DealAssigneeId");
@@ -769,6 +969,12 @@ namespace DealTrackAPI.Migrations
                     b.HasOne("DealTrackAPI.Entities.Property", "DealProperty")
                         .WithOne()
                         .HasForeignKey("DealTrackAPI.Entities.Deal", "PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DealTrackAPI.Entities.TitleCompany", "DealTitleCompany")
+                        .WithMany()
+                        .HasForeignKey("TitleCompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -14,5 +14,6 @@ namespace DealTrackAPI.Models
         public string ZipCode { get; set; }
         public string OfficeNumber { get; set; }
         public string MobileNumber { get; set; }
+        public string FaxNumber { get; set; }
     }
 }

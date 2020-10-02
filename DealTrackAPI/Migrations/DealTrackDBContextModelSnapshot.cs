@@ -364,7 +364,7 @@ namespace DealTrackAPI.Migrations
 
                     b.HasIndex("DealId");
 
-                    b.ToTable("CustomersToDeals");
+                    b.ToTable("CustomerDeals");
 
                     b.HasData(
                         new

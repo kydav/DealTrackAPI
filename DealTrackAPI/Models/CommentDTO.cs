@@ -5,7 +5,7 @@ namespace DealTrackAPI.Models
     {
         public int Id { get; set; }
         public DealDTO Deal { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string Content { get; set; }
         public UserDTO Creator { get; set; }
     }
