@@ -18,7 +18,7 @@ namespace DealTrackAPI.Controllers
             _dealService = dealService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllDeals")]
         public IActionResult GetActiveDeals()
         {
 
@@ -28,10 +28,12 @@ namespace DealTrackAPI.Controllers
             return Ok(dealList);
         }
 
-        [HttpGet]
+        [HttpGet("GetActiveDeals")]
         public IActionResult GetAllDeals()
         {
             var dealList = _dealService.GetAllDeals();
+            if (dealList == null)
+                return NotFound();
             return Ok(dealList);
         }
             
@@ -40,6 +42,8 @@ namespace DealTrackAPI.Controllers
         public IActionResult GetDeal(int dealId)
         {
             var deal = _dealService.GetDeal(dealId);
+            if (deal == null)
+                return NotFound();
             return Ok(deal);
         }
 

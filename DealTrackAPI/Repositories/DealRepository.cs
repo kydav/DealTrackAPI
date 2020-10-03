@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using DealTrackAPI.Entities;
 using DealTrackAPI.Models;
 
 namespace DealTrackAPI.Repositories
 {
     public class DealRepository : IDealRepository
     {
-        public DealRepository()
+        private readonly DealTrackDBContext _context;
+        public DealRepository(DealTrackDBContext context)
         {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public void CreateDeal(DealDTO deal)
@@ -20,9 +24,9 @@ namespace DealTrackAPI.Repositories
             throw new NotImplementedException();
         }
 
-        public DealDTO GetDeal(int dealId)
+        public Deal GetDeal(int dealId)
         {
-            throw new NotImplementedException();
+            return _context.Deals.Where(i => i.Id == dealId).FirstOrDefault();
         }
 
         public IEnumerable<DealDTO> GetDeals()

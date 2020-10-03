@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using DealTrackAPI.Models;
 using DealTrackAPI.Repositories;
 
@@ -8,11 +9,13 @@ namespace DealTrackAPI.Services
 {
     public class DealService : IDealService
     {
-        private DealRepository _dealRepository;
+        private IDealRepository _dealRepository;
+        private readonly IMapper _mapper;
 
-        public DealService(DealRepository dealRepository)
+        public DealService(IDealRepository dealRepository, IMapper mapper)
         {
             _dealRepository = dealRepository;
+            _mapper = mapper;
         }
 
         public void CreateDeal(DealDTO deal)
@@ -25,9 +28,10 @@ namespace DealTrackAPI.Services
             _dealRepository.DeleteDeal(dealId);
         }
 
-        public async Task<DealDTO> GetDeal(int dealId)
+        public DealDTO GetDeal(int dealId)
         {
-            return _dealRepository.GetDeal(dealId);
+            var deal = _dealRepository.GetDeal(dealId);
+            return  _mapper.Map<DealDTO>(deal);
         }
 
         public Task<IEnumerable<DealDTO>> GetActiveDeals()
