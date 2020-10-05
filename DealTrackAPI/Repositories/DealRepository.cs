@@ -14,9 +14,9 @@ namespace DealTrackAPI.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public void CreateDeal(DealDTO deal)
+        public void CreateDeal(Deal deal)
         {
-            throw new NotImplementedException();
+            _context.Deals.Add(deal);
         }
 
         public void DeleteDeal(int dealId)
@@ -26,7 +26,17 @@ namespace DealTrackAPI.Repositories
 
         public Deal GetDeal(int dealId)
         {
-            return _context.Deals.Where(i => i.Id == dealId).FirstOrDefault();
+            var deal = new Deal();
+            deal = _context.Deals.Where(i => i.Id == dealId).FirstOrDefault();
+            deal.DealAppraiser = _context.Appraisers.Where(a => a.Id == deal.AppraiserId).FirstOrDefault();
+            deal.DealLender = _context.Lenders.Where(l => l.Id == deal.LenderID).FirstOrDefault();
+            deal.DealProperty = _context.Properties.Where(p => p.Id == deal.PropertyId).FirstOrDefault();
+            deal.DealAssignee = _context.Users.Where(u => u.Id == deal.AssigneeId).FirstOrDefault();
+            deal.DealCreator = _context.Users.Where(u => u.Id == deal.CreatorId).FirstOrDefault();
+            deal.Comments = _context.Comments.Where(c => c.DealId == deal.Id).ToList();
+            deal.DealTitleCompany = _context.TitleCompanies.Where(t => t.Id == deal.TitleCompanyId).FirstOrDefault();
+            deal.CustomerDeals = _context.CustomerDeals.Where(cd => cd.DealId == deal.Id).ToList();
+            return deal;
         }
 
         public IEnumerable<DealDTO> GetDeals()

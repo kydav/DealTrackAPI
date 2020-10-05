@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using DealTrackAPI.Entities;
 using DealTrackAPI.Models;
 using DealTrackAPI.Repositories;
 
@@ -20,7 +21,7 @@ namespace DealTrackAPI.Services
 
         public void CreateDeal(DealDTO deal)
         {
-            _dealRepository.CreateDeal(deal);
+            _dealRepository.CreateDeal(_mapper.Map<Deal>(deal));
         }
 
         public void DeleteDeal(int dealId)

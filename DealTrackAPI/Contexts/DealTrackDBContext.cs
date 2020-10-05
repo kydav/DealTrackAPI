@@ -559,6 +559,7 @@ namespace DealTrackAPI.Models
 
         }
 
+        public DbSet<Appraiser> Appraisers { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Deal> Deals { get; set; }
         public DbSet<CustomerDeal> CustomerDeals { get; set; }
@@ -566,6 +567,7 @@ namespace DealTrackAPI.Models
         public DbSet<Lender> Lenders { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Property> Properties { get; set; }
+        public DbSet<TitleCompany> TitleCompanies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

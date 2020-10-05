@@ -9,7 +9,7 @@ namespace DealTrackAPI.Repositories
     {
         IEnumerable<DealDTO> GetDeals();
         Deal GetDeal(int dealId);
-        void CreateDeal(DealDTO deal);
+        void CreateDeal(Deal deal);
         void UpdateDeal(DealDTO deal);
         void DeleteDeal(int dealId);
     }
