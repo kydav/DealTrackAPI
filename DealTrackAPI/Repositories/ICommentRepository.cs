@@ -12,5 +12,6 @@ namespace DealTrackAPI.Repositories
         public IEnumerable<Comment> GetCommentsForDeal(int dealId);
         public Comment GetComment(int commentId);
         public void UpdateComment(Comment comment);
+        public void Save();
     }
 }

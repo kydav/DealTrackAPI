@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace DealTrackAPI.Controllers
 {
     [ApiController]
-    [Route("deal")]
+    [Route("api/deals")]
     public class DealController : ControllerBase
     {
         private readonly ILogger<DealController> _logger;

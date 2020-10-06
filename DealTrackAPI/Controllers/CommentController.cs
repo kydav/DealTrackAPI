@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace DealTrackAPI.Controllers
 {
     [ApiController]
-    [Route("comments")]
+    [Route("api/comments")]
     public class CommentController : ControllerBase
     {
         private readonly ILogger<CommentController> _logger;
@@ -29,7 +29,7 @@ namespace DealTrackAPI.Controllers
             return Ok(commentList);
         }
 
-        [HttpPut]
+        [HttpPost(Name = "CreateComment")]
         public IActionResult CreateComment(CommentDTO comment)
         {
             _commentService.CreateComment(comment);
@@ -43,8 +43,8 @@ namespace DealTrackAPI.Controllers
             return NoContent();
         }
 
-        [HttpPut]
-        public IActionResult UdpateComment(CommentDTO comment)
+        [HttpPut(Name = "UpdateComment")]
+        public IActionResult UpdateComment(CommentDTO comment)
         {
             _commentService.UpdateComment(comment);
             return NoContent();

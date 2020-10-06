@@ -22,6 +22,7 @@ namespace DealTrackAPI.Services
         {
 
             _commentRepository.CreateComment(_mapper.Map<Comment>(comment));
+            _commentRepository.Save();
         }
 
         public void DeleteComment(CommentDTO comment)
