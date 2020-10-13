@@ -7,8 +7,8 @@ namespace DealTrackAPI.Profiles
     {
         public CommentProfile()
         {
-            CreateMap<Entities.Comment, Models.CommentDTO>();
-            CreateMap<Models.CommentDTO, Entities.Comment>();
+            //CreateMap<Entities.Comment, Models.CommentDTO>();
+            //CreateMap<Models.CommentDTO, Entities.Comment>();
         }
     }
 }

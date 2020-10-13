@@ -66,7 +66,7 @@ namespace DealTrackAPI.Entities
 
         public virtual IList<CustomerDeal> CustomerDeals { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual IList<Comment> Comments { get; set; }
 
         //[Column(TypeName = "decimal(7,2)")]
         public decimal EarnestMoney { get; set; }

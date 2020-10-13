@@ -9,12 +9,12 @@ namespace DealTrackAPI.Models
         //public int Type { get; set; }
         public int Status { get; set; }
         public string Description { get; set; }
-        public PropertyDTO Property { get; set; }
-        public LenderDTO Lender { get; set; }
-        public AppraiserDTO Appraiser { get; set; }
-        public TimeoutException TitleCompany { get; set; }
-        public UserDTO Creator { get; set; }
-        public UserDTO Assignee { get; set; }
+        public PropertyDTO DealProperty { get; set; }
+        public LenderDTO DealLender { get; set; }
+        public AppraiserDTO DealAppraiser { get; set; }
+        public TitleCompanyDTO DealTitleCompany { get; set; }
+        public UserDTO DealCreator { get; set; }
+        public UserDTO DealAssignee { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime DisclosureDeadline { get; set; }
         public DateTime AppraisalDate { get; set; }

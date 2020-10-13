@@ -22,32 +22,60 @@ namespace DealTrackAPI.Controllers
         [HttpGet("GetCommentsForDeal")]
         public IActionResult GetCommentsForDeal(int dealId)
         {
-
-            var commentList = _commentService.GetCommentsForDeal(dealId);
-            if (commentList == null)
-                return NotFound();
-            return Ok(commentList);
+            try
+            {
+                var commentList = _commentService.GetCommentsForDeal(dealId);
+                if (commentList == null)
+                    return NotFound();
+                return Ok(commentList);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost(Name = "CreateComment")]
         public IActionResult CreateComment(CommentDTO comment)
         {
-            _commentService.CreateComment(comment);
-            return NoContent();
+            try
+            {
+                _commentService.CreateComment(comment);
+                return NoContent();
+                //return CreatedAtRoute();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete]
         public IActionResult DeleteComment(CommentDTO comment)
         {
-            _commentService.DeleteComment(comment);
-            return NoContent();
+            try
+            {
+                _commentService.DeleteComment(comment);
+                return NoContent();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPut(Name = "UpdateComment")]
         public IActionResult UpdateComment(CommentDTO comment)
         {
-            _commentService.UpdateComment(comment);
-            return NoContent();
+            try
+            {
+                _commentService.UpdateComment(comment);
+                return NoContent();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
     }
