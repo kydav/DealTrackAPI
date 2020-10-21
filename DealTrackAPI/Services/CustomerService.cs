@@ -18,7 +18,7 @@ namespace DealTrackAPI.Services
             throw new NotImplementedException();
         }
 
-        public void DeleteCustomer(CustomerDTO customer)
+        public void DeleteCustomer(int customerId)
         {
             throw new NotImplementedException();
         }
@@ -29,6 +29,11 @@ namespace DealTrackAPI.Services
         }
 
         public List<CustomerDTO> GetCustomersForDeal(int dealId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CustomerDTO> GetActiveCustomers()
         {
             throw new NotImplementedException();
         }
