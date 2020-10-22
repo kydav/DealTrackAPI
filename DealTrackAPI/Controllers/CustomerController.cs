@@ -22,50 +22,91 @@ namespace DealTrackAPI.Controllers
         [HttpGet("GetAllCustomers")]
         public IActionResult GetActiveCustomers()
         {
-
-            var customerList = _customerService.GetActiveCustomers();
-            if (customerList == null)
-                return NotFound();
-            return Ok(customerList);
+            try
+            {
+                var customerList = _customerService.GetActiveCustomers();
+                if (customerList == null)
+                    return NotFound();
+                return Ok(customerList);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet("GetCustomersForDeal")]
         public IActionResult GetCustomersForDeal(int dealId)
         {
-            var customerList = _customerService.GetCustomersForDeal(dealId);
-            if (customerList == null)
-                return NotFound();
-            return Ok(customerList);
+            try
+            {
+                var customerList = _customerService.GetCustomersForDeal(dealId);
+                if (customerList == null)
+                    return NotFound();
+                return Ok(customerList);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]
         public IActionResult GetCustomer(int customerId)
         {
-            var customer = _customerService.GetCustomer(customerId);
-            if (customer == null)
-                return NotFound();
-            return Ok(customer);
+            try
+            { 
+                var customer = _customerService.GetCustomer(customerId);
+                if (customer == null)
+                    return NotFound();
+                return Ok(customer);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public IActionResult CreateCustomer(CustomerDTO customer)
         {
-            _customerService.CreateCustomer(customer);
-            return NoContent();
+            try
+            {
+                _customerService.CreateCustomer(customer);
+                return NoContent();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPatch]
         public IActionResult UpdateCustomer(CustomerDTO customer)
         {
-            _customerService.UpdateCustomer(customer);
-            return NoContent();
+            try
+            {
+                _customerService.UpdateCustomer(customer);
+                return NoContent();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete]
         public IActionResult DeleteCustomer(int customerId)
         {
-            _customerService.DeleteCustomer(customerId);
-            return NoContent();
+            try
+            {
+                _customerService.DeleteCustomer(customerId);
+                return NoContent();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
         
     }

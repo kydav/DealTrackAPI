@@ -11,6 +11,8 @@
     <Folder Include="Contexts\" />
     <Folder Include="Migrations\" />
     <Folder Include="Profiles\" />
+    <Folder Include="Repositories\Interfaces\" />
+    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
